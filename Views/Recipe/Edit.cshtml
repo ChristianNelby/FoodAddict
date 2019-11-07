@@ -1,0 +1,104 @@
+﻿@model RecipeViewModel
+@using FoodAddict.Models.RecipeViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="p-5 text-center">Edit</h1>
+
+
+<form asp-action="Edit" asp-controller="Recipe" method="post">
+
+    <input type="hidden" asp-for="RecipeId" />
+
+    <div class="row justify-content-center">
+        <div class="col-10 form-group">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-10 form-group">
+            <label asp-for="MealSize" class="control-label"></label>
+            <input asp-for="MealSize" class="form-control" />
+            <span asp-validation-for="MealSize" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-10 form-group">
+            <label asp-for="MealPreparationTime" class="control-label"></label>
+            <input asp-for="MealPreparationTime" class="form-control" />
+            <span asp-validation-for="MealPreparationTime" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-10 form-group">
+            <label asp-for="Directions" class="control-label"></label>
+            <textarea asp-for="Directions" class="form-control"></textarea>
+            <span asp-validation-for="Directions" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-10 form-group">
+            <label asp-for="UrlImage" class="control-label"></label>
+            <input asp-for="UrlImage" class="form-control" />
+            <span asp-validation-for="UrlImage" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div id="elementHolder" class="mb-5">
+        @for (int i = 0; i < Model.Ingredients.Count; i++)
+        {
+            <div class="row justify-content-center" id="divRowId @i">
+                <div class="col-2" id="divNameId @i">
+                    <label id="labelNameId @i" asp-for="@Model.Ingredients[i].Name" class="control-label"></label>
+                    <input id="inputNameId @i" asp-for="@Model.Ingredients[i].Name" class="form-control" />
+                </div>
+
+                <div class="col-2" id="divAmountId @i">
+                    <label id="labelAmountId @i" asp-for="@Model.Ingredients[i].Amount" class="control-label"></label>
+                    <input id="inputAmountId @i" asp-for="@Model.Ingredients[i].Amount" class="form-control" />
+                </div>
+
+                <div class="col-2" id="divUnitId @i">
+                    <label id="labelUnitId @i" asp-for="@Model.Ingredients[i].Unit" class="control-label"></label>
+                    <input id="inputUnitId @i" asp-for="@Model.Ingredients[i].Unit" class="form-control" />
+                </div>
+
+                <div class="col-2" id="divPreparationsId @i">
+                    <label id="labelPreparationsId @i" asp-for="@Model.Ingredients[i].Preparations" class="control-label"></label>
+                    <input id="inputPreparationsId @i" asp-for="@Model.Ingredients[i].Preparations  " class="form-control" />
+                </div>
+
+                <div class="col-1 mt-2" id="divButtonId @i">
+                    <label></label>
+                    <button type="button" id="buttonId @i" class="btn btn-danger" onclick="RemoveElement(this.id)">Delete</button>
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+
+    <div class="text-center p-2">
+        <button type="button" class="btn btn-lg btn-primary" onclick="AddIngredient();">Add Ingredient</button>
+    </div>
+
+    <div class="text-center p-2">
+        <button class="btn btn-lg btn-primary" type="submit">Save</button>
+
+    </div>
+
+</form>
+
+
+
+
+
